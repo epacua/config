@@ -1,0 +1,39 @@
+set nocompatible
+set backspace=indent,eol,start
+set ruler
+set showcmd
+set incsearch
+"set smartindent
+"set smarttab
+" set cindent
+set expandtab
+" set cinkeys-=0#
+" set indentkeys-=0#
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set number
+set nohlsearch
+"set lcs=tab:▸,
+set encoding=utf-8
+set fileencoding=utf-8
+" set paste
+" inoremap {      {}<Left>
+" inoremap {<CR>  {<CR>}<Esc>O
+" inoremap {{     {
+" inoremap {}     {}
+
+" augroup AutoSaveFolds
+" autocmd!
+" autocmd BufWinLeave * mkview
+" autocmd BufWinEnter * silent loadview
+" augroup END
+" set background=dark
+colorscheme tokyonight
+"colorscheme acme
+" set backupdir=$HOME/.vim/backup
+" set patchmode=.orig
+
+set wildmenu
+set wildmode=list:longest
+set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
