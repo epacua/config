@@ -37,3 +37,32 @@ function get_A_records() {
 
 reported_alive
 get_A_records
+
+
+if [[ $# -ne 1 ]]; then
+  echo "Please supply IP address"
+  exit 1
+fi
+
+SCRIPT="$HOME/bin/mac-address-lookup.sh"
+MYUSER=
+IP=
+
+if [[ $(grep -F '@' <(echo $1)) ]]; then
+  MYUSER=${1%%@*}
+  IP=${1##*@}
+else
+  : ${IP:=$1}
+  : ${MYUSER:=$USER}
+fi
+
+function report(){
+  echo "User: $MYUSER"
+  echo "IP: $IP"
+  HOMEDIR=$(ssh $MYUSER@$IP "getent passwd $MYUSER | cut -d':' -f6")
+  scp $SCRIPT $MYUSER@$IP:$HOMEDIR
+  ssh $MYUSER@$IP "$HOMEDIR/$(basename $SCRIPT) > $HOMEDIR/report.txt && echo Success || echo Failure"
+}
+
+report
+
